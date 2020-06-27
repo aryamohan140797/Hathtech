@@ -19,8 +19,7 @@ class _PaymentlistState extends State<Paymentlist> {
       child: FutureBuilder<List<PaymentModel>>(
           future: Apis().paymentapi(),
           builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done &&
-                snapshot.hasData) {
+
               return Padding(
                 padding: EdgeInsets.only(
                   left: 10.0,
@@ -102,12 +101,8 @@ class _PaymentlistState extends State<Paymentlist> {
                           );
                         }),
               );
-            }
-            return Center(
-              child: CircularProgressIndicator(
-                  valueColor:
-                      new AlwaysStoppedAnimation<Color>(ColorTheme.grey)),
-            );
+
+
           }),
     );
   }

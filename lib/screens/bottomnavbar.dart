@@ -42,7 +42,7 @@ class BottomnavigationState extends State<Bottomnavigation> {
     });
   }
 
-  BottomnavigationState();
+
 
   @override
   Widget build(BuildContext context) {

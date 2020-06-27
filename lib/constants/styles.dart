@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+
+// Styles
 class Style {
   static TextStyle Worksans(Color color, double d) {
     return TextStyle(

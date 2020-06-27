@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-
+// Texts
 const String congratulations = "Congratulations!";
 const String earnedtext = "You earned crypto.";
 const String requesttext= "Request";

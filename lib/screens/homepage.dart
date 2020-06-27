@@ -36,12 +36,70 @@ class _HomepageState extends State<Homepage> {
           children: <Widget>[
             _congratulations(),
             SizedBox(
-              height: MediaQuery.of(context).size.height / 12,
+              height: MediaQuery.of(context).size.height / 20,
             ),
-            CryptoCard(
-              image: "assets/images/purple.jpg",
-              price: "\$158.0",
-              name: cryptotext,
+//            CryptoCard(8
+//              image: "assets/images/purple.jpg",
+//              price: "\$158.0",
+//              name: cryptotext,
+//            ),
+            Container(
+              height: MediaQuery.of(context).size.height / 2.85,
+              width: MediaQuery.of(context).size.width,
+              child: SwipeStack(
+                children: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((int index) {
+                  return SwiperItem(
+                      builder: (SwiperPosition position, double progress) {
+                    return Material(
+                        elevation: 4,
+                        borderRadius: BorderRadius.all(Radius.circular(16)),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.all(Radius.circular(16)),
+                          ),
+                          child: Container(
+                            child: Center(
+                              child: Text("\$158.0",
+                                  style: Style.Worksans(
+                                      ColorTheme.whiteColor, 25.0)),
+                            ),
+                            height: 190.0,
+                            width: MediaQuery.of(context).size.width - 100.0,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(16.0),
+//                        color: Colors.blue,
+                                image: DecorationImage(
+                                    image: new NetworkImage(
+                                        "https://eu.community.samsung.com/t5/image/serverpage/image-id/156393iE783AA327643ADFE/image-size/large?v=1.0&px=999"),
+                                    fit: BoxFit.fill)),
+                          ),
+
+//                                Container(
+//                                  height: MediaQuery.of(context).size.height/3,
+//                                  width: MediaQuery.of(context).size.width,
+//
+//                                  child: ClipRRect(
+//                                      borderRadius: const BorderRadius.all(Radius.circular(16.0)),
+//                                      child: FittedBox(
+//                                        fit: BoxFit.fill,
+////                                            aspectRatio: 1.5/1.12,
+//                                          child: Image.asset("assets/images/purple.jpg",fit: BoxFit.fill,))),
+//                                ),
+//                            )
+                        ));
+                  });
+                }).toList(),
+                visibleCount: 3,
+                stackFrom: StackFrom.Top,
+                translationInterval: 6,
+                scaleInterval: 0.03,
+                onEnd: () => debugPrint("onEnd"),
+                onSwipe: (int index, SwiperPosition position) =>
+                    debugPrint("onSwipe $index $position"),
+                onRewind: (int index, SwiperPosition position) =>
+                    debugPrint("onRewind $index $position"),
+              ),
             ),
             Expanded(
               child: Align(

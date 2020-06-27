@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+
+// Colors
 class ColorTheme {
   ColorTheme._();
   static const Color whiteColor = Colors.white;
