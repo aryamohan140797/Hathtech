@@ -97,7 +97,7 @@ class Featured extends StatelessWidget {
         children: <Widget>[
           SizedBox(height: 10,),
           Text(mainTitle,style: Style.Roboto(ColorTheme.grey, 15.0),),
-          SizedBox(height: 10,),
+          SizedBox(height: MediaQuery.of(context).size.height/18,),
 
           Row(
             children: <Widget>[
@@ -132,8 +132,9 @@ class Featured extends StatelessWidget {
             ],
           ),
           Divider(
-            color: Colors.grey,
-          )
+            color: ColorTheme.lightgrey,
+            thickness: 1.5,
+          ),
         ],
       );
 

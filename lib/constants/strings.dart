@@ -15,4 +15,5 @@ const String featuredtext= "Featured";
 const String metaltext= "Metal";
 const String searchtext= "Search";
 const String cryptotext= "Crypto";
+const String cashtext= "Cash";
 

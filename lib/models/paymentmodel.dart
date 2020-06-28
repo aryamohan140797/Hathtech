@@ -1,35 +1,4 @@
 // Model class for api
-import 'package:app/services/services.dart';
-import 'package:provider/provider.dart';
-import 'package:flutter/material.dart';
-
-
-class PaymentProvider with ChangeNotifier{
-  Services _service = Services();
-  List<PaymentModel> payGet=[];
-  Map<String, PaymentModel> paymentList = {};
-
-  bool isLoading = true;
-  String message;
-  void getPaymentdetails({avatar,name,price,description}) async {
-    try {
-
-      payGet = await _service.fetchPayment(avatar:avatar,name: name,price: price,description: description);
-      isLoading = false;
-      message = null;
-
-      notifyListeners();
-    } catch (err) {
-      message =
-          "There is an issue with the app during request the data, please contact admin for fixing the issues " +
-              err.toString();
-      notifyListeners();
-    }
-  }
-
-
-}
-
 
 class PaymentModel {
   String avatar;

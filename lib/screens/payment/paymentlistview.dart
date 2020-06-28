@@ -19,7 +19,8 @@ class _PaymentlistState extends State<Paymentlist> {
       child: FutureBuilder<List<PaymentModel>>(
           future: Apis().paymentapi(),
           builder: (context, snapshot) {
-
+            if (snapshot.connectionState == ConnectionState.done &&
+                snapshot.hasData) {
               return Padding(
                 padding: EdgeInsets.only(
                   left: 10.0,
@@ -27,82 +28,87 @@ class _PaymentlistState extends State<Paymentlist> {
                 ),
                 child: snapshot.data.length == 0
                     ? Center(
-                        child: Text(
-                        "no items",
-                      ))
+                    child: Text(
+                      "no items",
+                    ))
                     : ListView.builder(
-                        itemCount: snapshot.data.length,
-                        itemBuilder: (
-                          BuildContext context,
-                          int index,
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (
+                        BuildContext context,
+                        int index,
                         ) {
-                          return Column(
+                      return Column(
+                        children: <Widget>[
+                          Row(
                             children: <Widget>[
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
+                              Column(
                                 children: <Widget>[
-                                  Column(
-                                    children: <Widget>[
-                                      CircularProfileAvatar(
-                                        snapshot.data[index].avatar,
-                                        radius: 22,
-                                        backgroundColor: Colors.grey,
-                                        borderWidth: 0,
-                                      ),
-                                    ],
+                                  CircularProfileAvatar(
+                                    snapshot.data[index].avatar,
+                                    radius: 22,
+                                    backgroundColor: Colors.grey,
+                                    borderWidth: 0,
                                   ),
-                                  Column(
-                                    children: <Widget>[
-                                      Row(
-                                        children: <Widget>[
-                                          Text(
-                                            snapshot.data[index].name,
-                                            style: Style.Worksans(
-                                                ColorTheme.black, 15.0),
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        children: <Widget>[
-                                          Text(
-                                            snapshot.data[index].description,
-                                            style: Style.Roboto(
-                                                ColorTheme.black, 15.0),
-                                          )
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                  Column(
-                                    children: <Widget>[
-                                      Align(
-                                        child: Container(
-                                          height: 30,
-                                          width: 50,
-                                          decoration: new BoxDecoration(
-                                            color: ColorTheme.whiteColor,
-                                            border: Border.all(
-                                                color: Colors.red, width: 2.0),
-                                            borderRadius:
-                                                new BorderRadius.circular(15.0),
-                                          ),
-                                          child: Center(
-                                              child: Text(
-                                                  snapshot.data[index].price,style: Style.Worksans(ColorTheme.red, 15.0),)),
-                                        ),
-                                      ),
-                                    ],
-                                  )
                                 ],
                               ),
-                              Divider(),
+                              SizedBox(width: 20,),
+                              Expanded(
+                                child: Column(
+                                  children: <Widget>[
+                                    Row(
+                                      children: <Widget>[
+                                        Text(
+                                          snapshot.data[index].name,
+                                          style: Style.Worksans(
+                                              ColorTheme.black, 15.0),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: <Widget>[
+                                        Text(
+                                          snapshot.data[index].description,
+                                          style: Style.Roboto(
+                                              ColorTheme.black, 15.0),
+                                        )
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Column(
+                                children: <Widget>[
+                                  Align(
+                                    child: Container(
+                                      height: 30,
+                                      width: 50,
+                                      decoration: new BoxDecoration(
+                                        color: ColorTheme.whiteColor,
+                                        border: Border.all(
+                                            color: Colors.red, width: 2.0),
+                                        borderRadius:
+                                        new BorderRadius.circular(15.0),
+                                      ),
+                                      child: Center(
+                                          child: Text(
+                                            snapshot.data[index].price,style: Style.Worksans(ColorTheme.red, 15.0),)),
+                                    ),
+                                  ),
+                                ],
+                              )
                             ],
-                          );
-                        }),
+                          ),
+                          Divider(),
+                        ],
+                      );
+                    }),
               );
-
-
+            }
+            return Center(
+              child: CircularProgressIndicator(
+                  valueColor:
+                  new AlwaysStoppedAnimation<Color>(ColorTheme.grey)),
+            );
           }),
     );
   }

@@ -30,100 +30,56 @@ class _HomepageState extends State<Homepage> {
         elevation: 0.0,
       ),
       body: Padding(
-        padding: const EdgeInsets.only(left: 10.0, right: 10.0, top: 20.0),
+        padding: const EdgeInsets.only(left: 12.0, right: 12.0, top: 15.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             _congratulations(),
             SizedBox(
-              height: MediaQuery.of(context).size.height / 20,
+              height: MediaQuery.of(context).size.height / 10,
             ),
-//            CryptoCard(8
-//              image: "assets/images/purple.jpg",
-//              price: "\$158.0",
-//              name: cryptotext,
-//            ),
             Container(
-              height: MediaQuery.of(context).size.height / 2.85,
-              width: MediaQuery.of(context).size.width,
-              child: SwipeStack(
-                children: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((int index) {
-                  return SwiperItem(
-                      builder: (SwiperPosition position, double progress) {
-                    return Material(
-                        elevation: 4,
-                        borderRadius: BorderRadius.all(Radius.circular(16)),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.all(Radius.circular(16)),
-                          ),
-                          child: Container(
-                            child: Center(
-                              child: Text("\$158.0",
-                                  style: Style.Worksans(
-                                      ColorTheme.whiteColor, 25.0)),
-                            ),
-                            height: 190.0,
-                            width: MediaQuery.of(context).size.width - 100.0,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(16.0),
-//                        color: Colors.blue,
-                                image: DecorationImage(
-                                    image: new NetworkImage(
-                                        "https://eu.community.samsung.com/t5/image/serverpage/image-id/156393iE783AA327643ADFE/image-size/large?v=1.0&px=999"),
-                                    fit: BoxFit.fill)),
-                          ),
-
-//                                Container(
-//                                  height: MediaQuery.of(context).size.height/3,
-//                                  width: MediaQuery.of(context).size.width,
-//
-//                                  child: ClipRRect(
-//                                      borderRadius: const BorderRadius.all(Radius.circular(16.0)),
-//                                      child: FittedBox(
-//                                        fit: BoxFit.fill,
-////                                            aspectRatio: 1.5/1.12,
-//                                          child: Image.asset("assets/images/purple.jpg",fit: BoxFit.fill,))),
-//                                ),
-//                            )
-                        ));
-                  });
-                }).toList(),
-                visibleCount: 3,
-                stackFrom: StackFrom.Top,
-                translationInterval: 6,
-                scaleInterval: 0.03,
-                onEnd: () => debugPrint("onEnd"),
-                onSwipe: (int index, SwiperPosition position) =>
-                    debugPrint("onSwipe $index $position"),
-                onRewind: (int index, SwiperPosition position) =>
-                    debugPrint("onRewind $index $position"),
+              height: MediaQuery.of(context).size.height / 2.5,
+              child: Stack(
+                children: <Widget>[
+                  CryptoCard(
+                    image: "assets/images/purple.jpg",
+                    price: "\$158.0",
+                    name: cryptotext,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 45.0),
+                    child: CryptoCard(
+                      image: "assets/images/gate.jpg",
+                      price: "\$450",
+                      name: cashtext,
+                    ),
+                  )
+                ],
               ),
             ),
-            Expanded(
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Rawbutton(
-                      onPressed: () {
-                        _moveTo();
-                      },
-                      title: requesttext,
-                      buttonColor: ColorTheme.purple,
-                    ),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    Rawbutton(
-                      title: senttext,
-                      buttonColor: ColorTheme.black,
-                    ),
-                  ],
+
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 15,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Rawbutton(
+                  onPressed: () {
+                    _moveTo();
+                  },
+                  title: requesttext,
+                  buttonColor: ColorTheme.purple,
                 ),
-              ),
+                SizedBox(
+                  width: 15,
+                ),
+                Rawbutton(
+                  title: senttext,
+                  buttonColor: ColorTheme.black,
+                ),
+              ],
             ),
           ],
         ),
@@ -161,9 +117,13 @@ class appbar extends StatelessWidget {
           backgroundColor: Colors.grey,
           borderWidth: 0,
         ),
-        Text(
-          title,
-          style: Style.Worksans(titleColor, 20.0),
+        Expanded(
+          child: Center(
+            child: Text(
+              title,
+              style: Style.Worksans(titleColor, 20.0),
+            ),
+          ),
         ),
         RoundButton(
           icon: icon,

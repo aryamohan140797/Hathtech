@@ -17,24 +17,29 @@ class _MarketplaceState extends State<Marketplace> {
       backgroundColor: ColorTheme.whiteColor,
       appBar: AppBar(
         elevation: 0.0,
+        automaticallyImplyLeading: false,
         backgroundColor: ColorTheme.whiteColor,
-        title: Row(mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              marketplacetext,
-              style: Style.Worksans(ColorTheme.black, 25.0),
-            ),
-          ],
+        title: Text(
+          marketplacetext,
+          style: Style.Worksans(ColorTheme.black, 25.0),
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(left:10.0,right: 10.0,top: 15.0),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.center,
-
-
+        padding: const EdgeInsets.only(left: 12.0, right: 12.0, top: 15.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Search(),
-            SizedBox(height: MediaQuery.of(context).size.height/12,),
+            SizedBox(
+              height: 10.0,
+            ),
+            Divider(
+              color: ColorTheme.lightgrey,
+              thickness: 1.5,
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 30,
+            ),
 
             Align(
               alignment: Alignment.center,
@@ -44,8 +49,12 @@ class _MarketplaceState extends State<Marketplace> {
                 image: "assets/images/purple.jpg",
               ),
             ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 30,
+            ),
             Divider(
-              color: ColorTheme.grey,
+              color: ColorTheme.lightgrey,
+              thickness: 1.5,
             ),
 
 //            SizedBox(height: MediaQuery.of(context).size.height/20,),
@@ -53,7 +62,13 @@ class _MarketplaceState extends State<Marketplace> {
             Expanded(
               child: Align(
                   alignment: Alignment.bottomCenter,
-                  child: Featured(mainTitle:featuredtext,name1: metaltext,name2:"MTL" ,price1:"\$"+"133.27",price2:"240.29 MTL" ,)),
+                  child: Featured(
+                    mainTitle: featuredtext,
+                    name1: metaltext,
+                    name2: "MTL",
+                    price1: "\$" + "133.27",
+                    price2: "240.29 MTL",
+                  )),
             )
           ],
         ),
@@ -70,17 +85,22 @@ class Search extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         Container(
-          height: MediaQuery.of(context).size.height/17,
-          width: MediaQuery.of(context).size.width/1.2,
-          child: TextField(
-            cursorColor: ColorTheme.grey,
-            decoration: InputDecoration(
-              hintText: searchhinttext,
-              hoverColor: ColorTheme.grey,
-              focusColor: ColorTheme.grey,
-
-
-              hintStyle: Style.Roboto(ColorTheme.grey, 15.0),
+          height: MediaQuery.of(context).size.height / 17,
+          width: MediaQuery.of(context).size.width / 1.2,
+          child: Theme(
+            data: Theme.of(context).copyWith(accentColor: Colors.white),
+            child: TextField(
+              autofocus: true,
+              cursorColor: ColorTheme.grey,
+              decoration: InputDecoration(
+                hintText: searchhinttext,
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: ColorTheme.whiteColor),
+                ),
+                hoverColor: ColorTheme.grey,
+                focusColor: ColorTheme.grey,
+                hintStyle: Style.Roboto(ColorTheme.grey, 15.0),
+              ),
             ),
           ),
         ),
@@ -92,4 +112,3 @@ class Search extends StatelessWidget {
     );
   }
 }
-
